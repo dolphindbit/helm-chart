@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dolphindbWebserver.fullName" . }}
+  labels:
+    name: {{ include "dolphindbWebserver.fullName" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
+  template:
+    metadata:
+      name: {{ include "dolphindbWebserver.fullName" . }}
+      labels:
+        app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      serviceAccountName: {{ .Values.global.serviceAccount }}
+      containers:
+        - name: dolphindb-webserver
+          image: {{ include "repository" . }}/dolphindb-webserver:{{ include "dolphindbWebserver.imageTag" . }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- include "mgr.env" . | indent 10}}
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

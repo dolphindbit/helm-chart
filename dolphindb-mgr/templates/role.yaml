@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: {{ include "rbac.role.kind" . }}
+metadata:
+  name: {{ .Values.global.serviceAccount }}
+rules:
+  - apiGroups:
+      - ""
+      - apps
+      - rbac.authorization.k8s.io
+      - dolphindb.dolphindb.io
+    resources:
+      - namespaces
+      - endpoints
+      - configmaps
+      - services
+      - persistentvolumeclaims
+      - serviceaccounts
+      - pods
+      - statefulsets
+      - deployments
+      - roles
+      - rolebindings
+      - dolphindbs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - dolphindb.dolphindb.io
+    resources:
+      - dolphindbs/status
+    verbs:
+      - get
+      - patch
+      - update

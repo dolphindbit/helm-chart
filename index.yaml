@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  dolphindb-mgr:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-12-30T00:54:11.458173715-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 89551759c327916d3b15bc338306ffe5085861c085a8fb87857594d9c48678d0
+    name: dolphindb-mgr
+    type: application
+    urls:
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-12-30T00:54:11.457563879-05:00"

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include  "dolphindbOperator.fullName" . }}
+  labels:
+    name: {{ include  "dolphindbOperator.fullName" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+  serviceName:  {{ include  "dolphindbOperator.fullName" . }}
+  template:
+    metadata:
+      name: {{ include  "dolphindbOperator.fullName" . }}
+      labels:
+        app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      serviceAccountName: {{ .Values.global.serviceAccount }}
+      containers:
+        - name: dolphindb-operator
+          image: {{ include "repository" . }}/dolphindb-operator:{{ include  "dolphindbOperator.imageTag" . }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- include "mgr.env" . | indent 10}}
+          volumeMounts:
+            - name: license
+              mountPath: /dolphindb.lic
+              subPath: dolphindb.lic
+            - name: localtime
+              mountPath: /etc/localtime
+      volumes:
+        - name: license
+          configMap:
+            name: dolphindb-license
+            items:
+              - key: dolphindb.lic
+                path: dolphindb.lic
+        - name: localtime
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+              topologyKey: kubernetes.io/hostname
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
