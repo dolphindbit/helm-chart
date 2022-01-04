@@ -24,6 +24,8 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             {{- include "mgr.env" . | indent 10}}
+          - name: NodePortIP
+            value: {{ .Values.nodePortIP }}
           volumeMounts:
             - name: localtime
               mountPath: /etc/localtime

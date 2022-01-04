@@ -6,20 +6,12 @@
     {{- end -}}
 {{- end -}}
 
-{{- define "rbac.role.kind" -}}
-    {{ if .Values.global.allNamespace }}
-    {{- printf "ClusterRole" -}}
-    {{- else -}}
-    {{- printf "Role" -}}
-    {{- end -}}
+{{- define "dolphindb-init.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbInit -}}
 {{- end -}}
 
-{{- define "rbac.roleBinding.kind" -}}
-    {{ if .Values.global.allNamespace }}
-    {{- printf "ClusterRoleBinding" -}}
-    {{- else -}}
-    {{- printf "RoleBinding" -}}
-    {{- end -}}
+{{- define "dolphindb-partner.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbPartner -}}
 {{- end -}}
 
 {{- define "repository" -}}

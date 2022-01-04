@@ -19,7 +19,7 @@ data:
       resources:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.dolphindb.images }}
       images:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        default:
+          dolphindb-init: {{ include "dolphindb-init.default.tag" . }}
+          dolphindb-partner: {{ include "dolphindb-partner.default.tag" . }}
