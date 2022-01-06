@@ -4,7 +4,7 @@ global:
   storageClass: ""
   serviceType: NodePort
   serviceAccount: dolphindb-mgr-sa
-  version: v0.1.0
+  version: v1.0.0
   allNamespace: false
 
 dolphindb-operator:
