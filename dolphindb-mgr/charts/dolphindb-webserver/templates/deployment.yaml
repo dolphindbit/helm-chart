@@ -29,10 +29,15 @@ spec:
           volumeMounts:
             - name: localtime
               mountPath: /etc/localtime
+            - name: dolphindb-config
+              mountPath: /dolphindb-config
       volumes:
         - name: localtime
           hostPath:
             path: /usr/share/zoneinfo/Asia/Shanghai
+        - configMap:
+            name: dolphindb-runtime-config
+          name: dolphindb-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
