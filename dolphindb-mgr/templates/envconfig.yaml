@@ -10,7 +10,6 @@ data:
       storageClass: {{ .Values.global.storageClass }}
       imageRepository: {{ include "repository" . }}
     dolphindb:
-      version: {{ .Values.dolphindb.version }}
       serviceType: {{ .Values.dolphindb.serviceType }}
       licenseName: {{ .Values.license.name }}
       controllerDataSize: {{ .Values.dolphindb.controllerDataSize }}
@@ -20,6 +19,10 @@ data:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       images:
+        versions:
+          - version: v1.30.14
+          - version: v1.30.15
+          - version: v2.00.3
         default:
           dolphindb-init: {{ include "dolphindb-init.default.tag" . }}
           dolphindb-partner: {{ include "dolphindb-partner.default.tag" . }}

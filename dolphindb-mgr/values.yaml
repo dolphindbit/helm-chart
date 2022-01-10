@@ -17,7 +17,6 @@ dolphindb-webserver:
   nodePortIP: ""
 
 dolphindb:
-  version: v1.30.14
   serviceType: NodePort
   controllerDataSize: 200Mi
   datanodeDataSize: 200Mi

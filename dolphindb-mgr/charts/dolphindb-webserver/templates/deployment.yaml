@@ -3,18 +3,20 @@ kind: Deployment
 metadata:
   name: {{ include "dolphindbWebserver.fullName" . }}
   labels:
-    name: {{ include "dolphindbWebserver.fullName" . }}
+    dolphindb.io/component: dolphindb-webserver
+    app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
+      dolphindb.io/component: dolphindb-webserver
       app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
   template:
     metadata:
       name: {{ include "dolphindbWebserver.fullName" . }}
       labels:
+        dolphindb.io/component: dolphindb-webserver
         app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 0
       serviceAccountName: {{ .Values.global.serviceAccount }}
@@ -26,18 +28,6 @@ spec:
             {{- include "mgr.env" . | indent 10}}
           - name: NodePortIP
             value: {{ .Values.nodePortIP }}
-          volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-            - name: dolphindb-config
-              mountPath: /dolphindb-config
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
-        - configMap:
-            name: dolphindb-runtime-config
-          name: dolphindb-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

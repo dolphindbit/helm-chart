@@ -3,19 +3,21 @@ kind: StatefulSet
 metadata:
   name: {{ include  "dolphindbOperator.fullName" . }}
   labels:
-    name: {{ include  "dolphindbOperator.fullName" . }}
+    dolphindb.io/component: dolphindb-operator
+    app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
+      dolphindb.io/component: dolphindb-operator
       app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
   serviceName:  {{ include  "dolphindbOperator.fullName" . }}
   template:
     metadata:
       name: {{ include  "dolphindbOperator.fullName" . }}
       labels:
+        dolphindb.io/component: dolphindb-operator
         app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 0
       serviceAccountName: {{ .Values.global.serviceAccount }}
@@ -29,8 +31,6 @@ spec:
             - name: license
               mountPath: /dolphindb.lic
               subPath: dolphindb.lic
-            - name: localtime
-              mountPath: /etc/localtime
       volumes:
         - name: license
           configMap:
@@ -38,9 +38,6 @@ spec:
             items:
               - key: dolphindb.lic
                 path: dolphindb.lic
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

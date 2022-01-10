@@ -6,6 +6,10 @@
     {{- end -}}
 {{- end -}}
 
+{{- define "global.service.type" -}}
+{{- default "NodePort" .Values.global.serviceType -}}
+{{- end -}}
+
 {{- define "dolphindb-init.default.tag" -}}
 {{- default .Values.global.version .Values.dolphindb.images.default.dolphindbInit -}}
 {{- end -}}
