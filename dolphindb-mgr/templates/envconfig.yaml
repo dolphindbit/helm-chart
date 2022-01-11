@@ -10,7 +10,7 @@ data:
       storageClass: {{ .Values.global.storageClass }}
       imageRepository: {{ include "repository" . }}
     dolphindb:
-      serviceType: {{ .Values.dolphindb.serviceType }}
+      serviceType: {{ include "dolphindb.service.type" . }}
       licenseName: {{ .Values.license.name }}
       controllerDataSize: {{ .Values.dolphindb.controllerDataSize }}
       datanodeDataSize: {{ .Values.dolphindb.datanodeDataSize }}

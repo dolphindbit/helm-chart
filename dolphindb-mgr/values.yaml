@@ -17,7 +17,7 @@ dolphindb-webserver:
   nodePortIP: ""
 
 dolphindb:
-  serviceType: NodePort
+  serviceType: ""
   controllerDataSize: 200Mi
   datanodeDataSize: 200Mi
   images:
