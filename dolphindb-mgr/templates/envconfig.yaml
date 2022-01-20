@@ -12,6 +12,7 @@ data:
     dolphindb:
       serviceType: {{ include "dolphindb.service.type" . }}
       licenseName: {{ .Values.license.name }}
+      coreDumpDir: {{ .Values.dolphindb.coreDumpDir }}
       controllerDataSize: {{ .Values.dolphindb.controllerDataSize }}
       datanodeDataSize: {{ .Values.dolphindb.datanodeDataSize }}
       {{- with .Values.license.resources }}
@@ -23,6 +24,7 @@ data:
           - version: v1.30.14
           - version: v1.30.15
           - version: v2.00.3
+          - version: v2.00.4
         default:
           dolphindb-init: {{ include "dolphindb-init.default.tag" . }}
           dolphindb-partner: {{ include "dolphindb-partner.default.tag" . }}

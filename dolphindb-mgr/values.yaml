@@ -18,6 +18,7 @@ dolphindb-webserver:
 
 dolphindb:
   serviceType: ""
+  coreDumpDir: "/data/ddb/core"
   controllerDataSize: 200Mi
   datanodeDataSize: 200Mi
   images:
