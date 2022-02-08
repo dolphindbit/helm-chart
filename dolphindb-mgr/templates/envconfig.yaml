@@ -23,8 +23,9 @@ data:
         versions:
           - version: v1.30.14
           - version: v1.30.15
+          - version: v1.30.16
           - version: v2.00.3
           - version: v2.00.4
         default:
-          dolphindb-init: {{ include "dolphindb-init.default.tag" . }}
-          dolphindb-partner: {{ include "dolphindb-partner.default.tag" . }}
+          dolphindb-config-loader: {{ include "dolphindb-config-loader.default.tag" . }}
+          dolphindb-service-manager: {{ include "dolphindb-service-manager.default.tag" . }}

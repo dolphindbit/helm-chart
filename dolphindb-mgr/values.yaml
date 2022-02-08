@@ -23,8 +23,8 @@ dolphindb:
   datanodeDataSize: 200Mi
   images:
     default:
-      dolphindbInit: ""
-      dolphindbPartner: ""
+      dolphindbConfigLoader: ""
+      dolphindbServiceManager: ""
 
 license:
   name: dolphindb-license

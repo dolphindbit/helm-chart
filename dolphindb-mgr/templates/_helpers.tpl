@@ -14,12 +14,12 @@
 {{- default (include "global.service.type" .) .Values.dolphindb.serviceType -}}
 {{- end -}}
 
-{{- define "dolphindb-init.default.tag" -}}
-{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbInit -}}
+{{- define "dolphindb-config-loader.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbConfigLoader -}}
 {{- end -}}
 
-{{- define "dolphindb-partner.default.tag" -}}
-{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbPartner -}}
+{{- define "dolphindb-service-manager.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbServiceManager -}}
 {{- end -}}
 
 {{- define "repository" -}}
