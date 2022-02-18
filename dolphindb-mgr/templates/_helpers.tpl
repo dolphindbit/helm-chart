@@ -6,6 +6,10 @@
     {{- end -}}
 {{- end -}}
 
+{{- define "global.serviceaccount.name" -}}
+{{- printf "%s-%s" .Values.global.serviceAccount ( include "work.namespace" .) -}}
+{{- end -}}
+
 {{- define "global.service.type" -}}
 {{- default "NodePort" .Values.global.serviceType -}}
 {{- end -}}

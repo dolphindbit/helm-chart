@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}
     spec:
       terminationGracePeriodSeconds: 0
-      serviceAccountName: {{ .Values.global.serviceAccount }}
+      serviceAccountName: {{ include "global.serviceaccount.name" . }}
       containers:
         - name: dolphindb-webserver
           image: {{ include "repository" . }}/dolphindb-webserver:{{ include "dolphindbWebserver.imageTag" . }}
