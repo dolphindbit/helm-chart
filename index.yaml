@@ -2,6 +2,39 @@ apiVersion: v1
 entries:
   dolphindb-mgr:
   - apiVersion: v2
+    appVersion: v1.0.1
+    created: "2022-04-25T05:36:07.167519709-04:00"
+    dependencies:
+    - condition: dolphindb-operator.enabled
+      name: dolphindb-operator
+      repository: ""
+    - condition: dolphindb-webserver.enabled
+      name: dolphindb-webserver
+      repository: ""
+    - condition: grafana.enabled
+      name: grafana
+      repository: ""
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: ""
+    description: A Helm chart for Kubernetes
+    digest: 7dcc48e2b0062724f2b3c850158390d8ab4246b2c583486661ed793b2dfb9ed7
+    name: dolphindb-mgr
+    type: application
+    urls:
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.1.tgz
+    version: v1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-04-25T05:36:07.163987893-04:00"
+    description: A Helm chart for Kubernetes
+    digest: 9a595c12763a68e26ce87d417d3db0e2a41faff90cf5a259e51d3b9955fa3097
+    name: dolphindb-mgr
+    type: application
+    urls:
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
+    version: v1.0.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-12-30T00:54:11.458173715-05:00"
     description: A Helm chart for Kubernetes
@@ -11,4 +44,4 @@ entries:
     urls:
     - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-30T00:54:11.457563879-05:00"
+generated: "2022-04-25T05:36:07.162965211-04:00"

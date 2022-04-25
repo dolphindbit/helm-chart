@@ -26,6 +26,14 @@
 {{- default .Values.global.version .Values.dolphindb.images.default.dolphindbServiceManager -}}
 {{- end -}}
 
+{{- define "dolphindb-exporter.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbExporter -}}
+{{- end -}}
+
+{{- define "dolphindb-cleaner.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbCleaner -}}
+{{- end -}}
+
 {{- define "repository" -}}
 {{- $registry := .Values.global.registry -}}
     {{ if $registry }}
@@ -42,4 +50,14 @@
       fieldPath: metadata.namespace
 - name: WorkNamespace
   value: {{ include "work.namespace" . }}
+{{- end }}
+
+{{- define "localtime.filehostpath" -}}
+{{- default "/etc/localtime" .Values.global.localTimeFileHostPath -}}
+{{- end -}}
+
+{{- define "mgr.localtime.volume" }}
+- hostPath:
+    path: {{ include "localtime.filehostpath" . }}
+  name: localtime
 {{- end }}

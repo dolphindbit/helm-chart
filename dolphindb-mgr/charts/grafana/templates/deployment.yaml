@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "grafana.fullname" . }}
+  labels:
+    {{- include "grafana.labels" . | nindent 4 }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 4 }}
+{{- end }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "grafana.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "grafana.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- include "grafana.pod" . | nindent 6 }}

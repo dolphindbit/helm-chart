@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 2.31.1
+description: Prometheus is a monitoring system and time series database.
+name: prometheus
+type: application
+version: 15.0.1

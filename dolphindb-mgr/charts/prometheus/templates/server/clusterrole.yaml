@@ -1,0 +1,36 @@
+apiVersion: {{ template "rbac.apiVersion" . }}
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "prometheus.server.labels" . | nindent 4 }}
+  name: {{ template "prometheus.serviceAccountName.server" . }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+      - nodes/proxy
+      - nodes/metrics
+      - services
+      - endpoints
+      - pods
+      - ingresses
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - "extensions"
+      - "networking.k8s.io"
+    resources:
+      - ingresses/status
+      - ingresses
+    verbs:
+      - get
+      - list
+      - watch
+  - nonResourceURLs:
+      - "/metrics"
+    verbs:
+      - get

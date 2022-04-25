@@ -26,11 +26,13 @@ spec:
           image: {{ include "repository" . }}/dolphindb-operator:{{ include  "dolphindbOperator.imageTag" . }}
           imagePullPolicy: IfNotPresent
           env:
-            {{- include "mgr.env" . | indent 10}}
+            {{- include "mgr.env" . | indent 12}}
           volumeMounts:
             - name: license
               mountPath: /dolphindb.lic
               subPath: dolphindb.lic
+            - mountPath: /etc/localtime
+              name: localtime
       volumes:
         - name: license
           configMap:
@@ -38,6 +40,7 @@ spec:
             items:
               - key: dolphindb.lic
                 path: dolphindb.lic
+        {{- include "mgr.localtime.volume" . | indent 8}}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
