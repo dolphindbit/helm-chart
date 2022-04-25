@@ -23,7 +23,7 @@ dolphindb:
   serviceType: ""
   coreDumpDir: "/data/ddb/core"
   localTimeFileMountPath: "/etc/localtime"
-  controllerDataSize: 200Mi
+  controllerDataSize: 300Mi
   datanodeDataSize: 200Mi
   images:
     default:
