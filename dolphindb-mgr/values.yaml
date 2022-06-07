@@ -4,9 +4,26 @@ global:
   storageClass: ""
   serviceType: NodePort
   serviceAccount: dolphindb-mgr-sa
-  version: v1.0.1
+  version: v1.0.2
   allNamespace: false
   localTimeFileHostPath: "/etc/localtime"
+  customDomainSuffix: ""
+  nodeAffinity:
+#    requiredDuringSchedulingIgnoredDuringExecution:
+#      nodeSelectorTerms:
+#        - matchExpressions:
+#            - key: dolphindb.io/pod
+#              operator: In
+#              values:
+#                - dolphindb
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+            - key: dolphindb.io/pod
+              operator: In
+              values:
+                - dolphindb
 
 dolphindb-operator:
   enabled: true
@@ -23,8 +40,10 @@ dolphindb:
   serviceType: ""
   coreDumpDir: "/data/ddb/core"
   localTimeFileMountPath: "/etc/localtime"
-  controllerDataSize: 300Mi
+  controllerDataSize: 200Mi
   datanodeDataSize: 200Mi
+  disableExporter: false
+  logCleanLimit: 0.9
   images:
     default:
       dolphindbConfigLoader: ""

@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v1.0.1
+appVersion: v1.0.2
 description: A Helm chart for Kubernetes
 name: dolphindb-mgr
 type: application
-version: v1.0.1
+version: v1.0.2
 dependencies:
   - name: dolphindb-operator
     condition: dolphindb-operator.enabled

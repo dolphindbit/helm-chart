@@ -40,4 +40,10 @@ spec:
 {{- if .Values.server.service.sessionAffinity }}
   sessionAffinity: {{ .Values.server.service.sessionAffinity }}
 {{- end }}
-  type: "{{ .Values.server.service.type }}"
+{{- if .Values.server.service.type }}
+  type: {{ .Values.server.service.type }}
+{{- else if .Values.global.serviceType }}
+  type: {{.Values.global.serviceType}}
+{{- else }}
+  type: "ClusterIP"
+{{- end }}

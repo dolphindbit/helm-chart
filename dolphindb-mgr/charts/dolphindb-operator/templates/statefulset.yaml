@@ -48,6 +48,13 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
               topologyKey: kubernetes.io/hostname
+      {{- if .Values.nodeAffinity}}
+        nodeAffinity:
+          {{- toYaml .Values.nodeAffinity | nindent 10 }}
+      {{- else if .Values.global.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml .Values.global.nodeAffinity | nindent 10 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -56,3 +63,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+

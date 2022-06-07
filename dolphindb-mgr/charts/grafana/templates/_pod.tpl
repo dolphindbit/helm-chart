@@ -56,9 +56,17 @@ containers:
 nodeSelector:
 {{ toYaml . | indent 2 }}
 {{- end }}
+{{- if .Values.affinity }}
 {{- with .Values.affinity }}
 affinity:
-{{ toYaml . | indent 2 }}
+{{- toYaml . | indent 2}}
+{{- end }}
+{{- else }}
+{{- with .Values.global.nodeAffinity }}
+affinity:
+  nodeAffinity:
+  {{- toYaml . | nindent 4}}
+{{- end }}
 {{- end }}
 {{- with .Values.tolerations }}
 tolerations:

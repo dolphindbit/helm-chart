@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: {{ template "grafana.fullname" . }}
   labels:
+    dolphindb.io/component: "grafana"
     {{- include "grafana.labels" . | nindent 4 }}
 spec:
-{{- if (or (eq .Values.service.type "ClusterIP") (empty .Values.service.type)) }}
+{{- if (or (eq .Values.service.type "ClusterIP") (and (empty .Values.service.type) (empty .Values.global.serviceType))) }}
   type: ClusterIP
   {{- if .Values.service.clusterIP }}
   clusterIP: {{ .Values.service.clusterIP }}
@@ -19,8 +20,10 @@ spec:
   loadBalancerSourceRanges:
 {{ toYaml .Values.service.loadBalancerSourceRanges | indent 4 }}
   {{- end -}}
-{{- else }}
+{{- else if eq .Values.service.type "NodePort"}}
   type: {{ .Values.service.type }}
+{{- else }}
+  type: {{ .Values.global.serviceType }}
 {{- end }}
 {{- if .Values.service.externalIPs }}
   externalIPs:

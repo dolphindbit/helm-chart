@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1646885456040,
+  "iteration": 1653466981743,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,138 +38,6 @@
       "panels": [],
       "title": "KPI",
       "type": "row"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null+nan",
-                "result": {
-                  "index": 0,
-                  "text": "0"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 0,
-        "y": 1
-      },
-      "id": 74,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.3.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "count(dolphindb_metric_avg_load{dolphindb_io_component_type=\"Datanode\", dolphindb_io_dolphindb_name=~\"$cluster_name\"})",
-          "format": "time_series",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Datanode",
-      "type": "stat"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 4,
-        "y": 1
-      },
-      "id": 72,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.3.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "count(dolphindb_metric_avg_load{dolphindb_io_component_type=\"Controller\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}) >= 0",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Controller",
-      "type": "stat"
     },
     {
       "fieldConfig": {
@@ -196,9 +64,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
+        "h": 9,
+        "w": 12,
+        "x": 0,
         "y": 1
       },
       "id": 42,
@@ -288,9 +156,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 16,
+        "h": 9,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 2,
@@ -392,7 +260,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 58,
       "options": {
@@ -482,7 +350,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 10
       },
       "id": 50,
       "options": {
@@ -572,7 +440,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "id": 6,
       "options": {
@@ -665,7 +533,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 19
       },
       "id": 62,
       "options": {
@@ -708,6 +576,7 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisWidth": 80,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -756,7 +625,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 52,
       "options": {
@@ -797,94 +666,7 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 3,
-            "pointSize": 0,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "MiBs"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 54,
-      "options": {
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "right"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "dolphindb_metric_disk_write_rate{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/(1024 * 1024)",
-          "interval": "",
-          "legendFormat": "{{pod}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Disk write rate",
-      "type": "timeseries"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
+            "axisWidth": 80,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -932,8 +714,98 @@
       "gridPos": {
         "h": 9,
         "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 54,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "exemplar": true,
+          "expr": "dolphindb_metric_disk_write_rate{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/(1024 * 1024)",
+          "interval": "",
+          "legendFormat": "{{pod}} ",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk write rate",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisWidth": 80,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 0,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 3,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "MiBs"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
         "x": 0,
-        "y": 36
+        "y": 37
       },
       "id": 22,
       "options": {
@@ -974,6 +846,7 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisWidth": 80,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -1022,7 +895,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 36
+        "y": 37
       },
       "id": 24,
       "options": {
@@ -1055,358 +928,361 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 46
       },
       "id": 44,
-      "panels": [],
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 3,
+                "pointSize": 0,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "gbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 2
+          },
+          "id": 48,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "exemplar": true,
+              "expr": "dolphindb_metric_disk_free_space{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024 * 1024)",
+              "interval": "",
+              "legendFormat": "{{pod}} ",
+              "refId": "A"
+            }
+          ],
+          "title": "Disk free space",
+          "type": "timeseries"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 3,
+                "pointSize": 0,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "gbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 2
+          },
+          "id": 46,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "exemplar": true,
+              "expr": "dolphindb_metric_disk_capacity{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024 *1024)",
+              "interval": "",
+              "legendFormat": "{{pod}} ",
+              "refId": "A"
+            }
+          ],
+          "title": "Disk Capacity",
+          "type": "timeseries"
+        },
+        {
+          "description": "the size of disk reading last  minute",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisWidth": 80,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 3,
+                "pointSize": 0,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "mbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 64,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "exemplar": true,
+              "expr": "dolphindb_metric_last_minute_read_volume{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024)",
+              "interval": "",
+              "legendFormat": "{{pod}} ",
+              "refId": "A"
+            }
+          ],
+          "title": "Last minute read volume",
+          "type": "timeseries"
+        },
+        {
+          "description": "the size of disk writing last  minute",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisWidth": 80,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 3,
+                "pointSize": 0,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 2,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "mbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "id": 66,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "exemplar": true,
+              "expr": "dolphindb_metric_last_minute_write_volume{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024)",
+              "interval": "",
+              "legendFormat": "{{pod}} ",
+              "refId": "A"
+            }
+          ],
+          "title": "Last minute write volume",
+          "type": "timeseries"
+        }
+      ],
       "title": "Disk",
       "type": "row"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 3,
-            "pointSize": 0,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "gbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 46
-      },
-      "id": 48,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "dolphindb_metric_disk_free_space{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024 * 1024)",
-          "interval": "",
-          "legendFormat": "{{pod}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Disk free space",
-      "type": "timeseries"
-    },
-    {
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 3,
-            "pointSize": 0,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "gbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 46
-      },
-      "id": 46,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "dolphindb_metric_disk_capacity{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024 *1024)",
-          "interval": "",
-          "legendFormat": "{{pod}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Disk Capacity",
-      "type": "timeseries"
-    },
-    {
-      "description": "the size of disk reading last  minute",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 3,
-            "pointSize": 0,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "mbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 56
-      },
-      "id": 64,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "dolphindb_metric_last_minute_read_volume{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024)",
-          "interval": "",
-          "legendFormat": "{{pod}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Last minute read volume",
-      "type": "timeseries"
-    },
-    {
-      "description": "the size of disk writing last  minute",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 3,
-            "pointSize": 0,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 3,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "mbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 56
-      },
-      "id": 66,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "exemplar": true,
-          "expr": "dolphindb_metric_last_minute_write_volume{pod=~\"$dolphindb_node\", dolphindb_io_dolphindb_name=~\"$cluster_name\"}/ (1024 * 1024)",
-          "interval": "",
-          "legendFormat": "{{pod}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Last minute write volume",
-      "type": "timeseries"
     },
     {
       "collapsed": true,
@@ -1414,7 +1290,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 47
       },
       "id": 36,
       "panels": [
@@ -1470,10 +1346,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 3
           },
           "id": 40,
           "options": {
@@ -1553,10 +1429,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 12,
-            "y": 40
+            "y": 3
           },
           "id": 38,
           "options": {
@@ -1594,7 +1470,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 48
       },
       "id": 26,
       "panels": [
@@ -1652,10 +1528,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 4
           },
           "id": 14,
           "options": {
@@ -1738,10 +1614,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 12,
-            "y": 41
+            "y": 4
           },
           "id": 28,
           "options": {
@@ -1823,10 +1699,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 52
+            "y": 13
           },
           "id": 32,
           "options": {
@@ -1908,10 +1784,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 12,
-            "y": 52
+            "y": 13
           },
           "id": 30,
           "options": {
@@ -1993,10 +1869,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 63
+            "y": 22
           },
           "id": 34,
           "options": {
@@ -2034,7 +1910,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 49
       },
       "id": 16,
       "panels": [
@@ -2092,10 +1968,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 10,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 42
+            "y": 5
           },
           "id": 10,
           "options": {
@@ -2178,10 +2054,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 10,
+            "h": 9,
             "w": 12,
             "x": 12,
-            "y": 42
+            "y": 5
           },
           "id": 8,
           "options": {
@@ -2220,7 +2096,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 50
       },
       "id": 4,
       "panels": [
@@ -2233,6 +2109,7 @@
               "custom": {
                 "axisLabel": "",
                 "axisPlacement": "auto",
+                "axisWidth": 80,
                 "barAlignment": 0,
                 "drawStyle": "line",
                 "fillOpacity": 0,
@@ -2278,10 +2155,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 0,
-            "y": 50
+            "y": 6
           },
           "id": 12,
           "options": {
@@ -2319,6 +2196,7 @@
               "custom": {
                 "axisLabel": "",
                 "axisPlacement": "auto",
+                "axisWidth": 80,
                 "barAlignment": 0,
                 "drawStyle": "line",
                 "fillOpacity": 0,
@@ -2364,10 +2242,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 11,
+            "h": 9,
             "w": 12,
             "x": 12,
-            "y": 50
+            "y": 6
           },
           "id": 20,
           "options": {
@@ -2410,10 +2288,10 @@
         "current": {
           "selected": true,
           "text": [
-            "ddb-1"
+            "xcliu"
           ],
           "value": [
-            "ddb-1"
+            "xcliu"
           ]
         },
         "definition": "label_values(dolphindb_metric_avg_load, dolphindb_io_dolphindb_name)",
@@ -2462,7 +2340,7 @@
     ]
   },
   "time": {
-    "from": "now-2m",
+    "from": "now-1m",
     "to": "now"
   },
   "timepicker": {},

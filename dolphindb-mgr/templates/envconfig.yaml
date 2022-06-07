@@ -10,6 +10,11 @@ data:
       storageClass: {{ .Values.global.storageClass }}
       imageRepository: {{ include "repository" . }}
       localTimeFileHostPath: {{ include "localtime.filehostpath" . }}
+      customDomainSuffix: {{ .Values.global.customDomainSuffix }}
+      {{- with .Values.global.nodeAffinity }}
+      nodeAffinity:
+        {{- toYaml . | nindent 8}}
+      {{- end }}
     dolphindb:
       serviceType: {{ include "dolphindb.service.type" . }}
       licenseName: {{ .Values.license.name }}
@@ -17,6 +22,40 @@ data:
       controllerDataSize: {{ .Values.dolphindb.controllerDataSize }}
       datanodeDataSize: {{ .Values.dolphindb.datanodeDataSize }}
       localTimeFileMountPath: {{ .Values.dolphindb.localTimeFileMountPath }}
+      disableExporter:  {{ .Values.dolphindb.disableExporter }}
+      logCleanLimit: {{ .Values.dolphindb.logCleanLimit }}
+      {{- with .Values.dolphindb.labels }}
+      labels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.annotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPodLabels }}
+      customPodLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPodAnnotations }}
+      customPodAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPvcLabels }}
+      customPvcLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPvcAnnotations }}
+      customPvcAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customServiceLabels }}
+      customServiceLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customServiceAnnotations }}
+      customServiceAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.license.resources }}
       resources:
         {{- toYaml . | nindent 8 }}
