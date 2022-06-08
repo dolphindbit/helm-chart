@@ -3,7 +3,7 @@ entries:
   dolphindb-mgr:
   - apiVersion: v2
     appVersion: v1.0.2
-    created: "2022-06-06T22:09:38.372321979-04:00"
+    created: "2022-06-07T21:31:21.599119711-04:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -22,11 +22,11 @@ entries:
     name: dolphindb-mgr
     type: application
     urls:
-    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.1.tgz/dolphindb-mgr-v1.0.2.tgz
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.2.tgz
     version: v1.0.2
   - apiVersion: v2
     appVersion: v1.0.1
-    created: "2022-06-06T22:09:38.363202845-04:00"
+    created: "2022-06-07T21:31:21.596665961-04:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -45,16 +45,16 @@ entries:
     name: dolphindb-mgr
     type: application
     urls:
-    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.1.tgz/dolphindb-mgr-v1.0.1.tgz
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.1.tgz
     version: v1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-06-06T22:09:38.353666561-04:00"
+    created: "2022-06-07T21:31:21.593746597-04:00"
     description: A Helm chart for Kubernetes
     digest: 9a595c12763a68e26ce87d417d3db0e2a41faff90cf5a259e51d3b9955fa3097
     name: dolphindb-mgr
     type: application
     urls:
-    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-v1.0.1.tgz/dolphindb-mgr-0.1.0.tgz
+    - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
     version: v1.0.0
-generated: "2022-06-06T22:09:38.348997677-04:00"
+generated: "2022-06-07T21:31:21.593089345-04:00"
