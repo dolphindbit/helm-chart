@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v1.0.2
+appVersion: v1.0.3
 description: A Helm chart for Kubernetes
 name: dolphindb-mgr
 type: application
-version: v1.0.2
+version: v1.0.3
 dependencies:
   - name: dolphindb-operator
     condition: dolphindb-operator.enabled
@@ -13,3 +13,9 @@ dependencies:
     condition: grafana.enabled
   - name: prometheus
     condition: prometheus.enabled
+  - name: alertmanager
+    condition: alertmanager.enabled
+  - name: node-exporter
+    condition: node-exporter.enabled
+  - name: loki
+    condition: loki.enabled

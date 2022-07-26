@@ -141,7 +141,6 @@ Return if ingress supports pathType.
   {{- or (eq (include "grafana.ingress.isStable" .) "true") (and (eq (include "grafana.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
 
-
 {{- define "grafana.prometheus.url" -}}
 {{- $url := .Values.prometheus.url -}}
     {{- if $url -}}
@@ -151,7 +150,6 @@ Return if ingress supports pathType.
     {{- end -}}
 {{- end -}}
 
-
 {{- define "grafana.server.datasources" -}}
 apiVersion: 1
 datasources:
@@ -160,4 +158,8 @@ datasources:
   url: {{ include "grafana.prometheus.url" . }}
   access: proxy
   isDefault: true
+- name: Loki
+  type: loki
+  url: {{ include "loki.address" . }}
+  access: proxy
 {{- end -}}

@@ -4,7 +4,7 @@ global:
   storageClass: ""
   serviceType: NodePort
   serviceAccount: dolphindb-mgr-sa
-  version: v1.0.2
+  version: v1.0.3
   allNamespace: false
   localTimeFileHostPath: "/etc/localtime"
   customDomainSuffix: ""
@@ -24,6 +24,8 @@ global:
               operator: In
               values:
                 - dolphindb
+  existingLokiAddress: ""
+  minPersistentVolumeSize: ""
 
 dolphindb-operator:
   enabled: true
@@ -50,6 +52,10 @@ dolphindb:
       dolphindbServiceManager: ""
       dolphindbExporter: ""
       dolphindbCleaner: ""
+      promtail: "2.4.1"
+
+promtailConfig:
+  name: dolphindb-promtail-config
 
 license:
   name: dolphindb-license
@@ -66,4 +72,15 @@ grafana:
   enabled: true
 
 prometheus:
+  enabled: true
+
+alertmanager:
+  enabled: true
+  persistence:
+    enabled: false
+
+node-exporter:
+  enabled: true
+
+loki:
   enabled: true

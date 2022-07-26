@@ -76,6 +76,8 @@ grafana.ini:
     provisioning: /etc/grafana/provisioning
   log:
     mode: console
+  date_formats:
+    default_timezone: UTC
 #    filters: context:critical
 #  auth.anonymous:
 #    enabled: true

@@ -11,6 +11,6 @@ data:
 {{- if eq $key "prometheus.yml" }}
     global:
 {{ $root.Values.server.global | toYaml | trimSuffix "\n" | indent 6 }}
-{{ toYaml $value | indent 4 }}
 {{- end }}
+{{ toYaml $value | indent 4 }}
 {{- end -}}

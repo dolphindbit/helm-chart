@@ -33,6 +33,9 @@ spec:
               subPath: dolphindb.lic
             - mountPath: /etc/localtime
               name: localtime
+            - name: promtail-config
+              mountPath: /promtail-config.yaml
+              subPath: promtail-config.yaml
       volumes:
         - name: license
           configMap:
@@ -40,6 +43,12 @@ spec:
             items:
               - key: dolphindb.lic
                 path: dolphindb.lic
+        - name: promtail-config
+          configMap:
+            name: dolphindb-promtail-config
+            items:
+              - key: promtail-config.yaml
+                path: promtail-config.yaml
         {{- include "mgr.localtime.volume" . | indent 8}}
       affinity:
         podAntiAffinity:

@@ -2344,7 +2344,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "Africa/Accra",
   "title": "dolphindb",
   "version": 1,
   "weekStart": ""

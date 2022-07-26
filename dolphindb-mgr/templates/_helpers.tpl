@@ -34,8 +34,12 @@
 {{- default .Values.global.version .Values.dolphindb.images.default.dolphindbCleaner -}}
 {{- end -}}
 
+{{- define "promtail.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.promtail -}}
+{{- end -}}
+
 {{- define "repository" -}}
-{{- $registry := .Values.global.registry -}}
+    {{- $registry := .Values.global.registry -}}
     {{ if $registry }}
     {{- printf "%s/%s" $registry .Values.global.repository -}}
     {{- else -}}
@@ -61,3 +65,15 @@
     path: {{ include "localtime.filehostpath" . }}
   name: localtime
 {{- end }}
+
+{{- define "loki.port" -}}
+    {{ if .Values.loki }}
+    {{- .Values.loki.service.port -}}
+    {{- else -}}
+    {{- "3100" -}}
+    {{- end -}}
+{{- end -}}
+
+{{- define "loki.address" -}}
+{{- default ( printf "http://%s.%s.svc.cluster.local:%s"  ( include "loki.fullname" . ) ( .Release.Namespace ) ( include "loki.port" . ) ) .Values.global.existingLokiAddress -}}
+{{- end -}}

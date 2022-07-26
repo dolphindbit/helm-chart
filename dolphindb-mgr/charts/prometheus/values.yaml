@@ -165,6 +165,81 @@ server:
 ## Prometheus server ConfigMap entries
 ##
 serverFiles:
+  alerting_rules.yml:
+    groups:
+      - name: CPU
+        rules:
+          - alert: HighCpuUsage
+            expr: dolphindb_metric_cpu_usage > 80
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: "High CPU usage detected (instance {{ $labels.instance }})"
+              description: "Cluster: {{$labels.dolphindb_io_dolphindb_name}} Node: {{$labels.pod}}\n instance: {{ $labels.instance }}\n CPU usage is above 80% (current value is: {{ $value }}"
+
+      - name: Memory
+        rules:
+          - alert: HostOutOfMemory
+            expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Host out of memory (instance {{ $labels.instance }})"
+              description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: DolphinDBOutofMemory
+            expr: (1 - dolphindb_metric_memory_alloc / ((dolphindb_metric_max_mem_size > 0 or (dolphindb_metric_max_mem_size <= bool 0) * 256) * 1024 * 1024 * 1024)) * 100 < 10
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: "dolphindb out of memory (instance {{ $labels.instance }})"
+              description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - name: Disk
+        rules:
+          - alert: OutOfDiskSpace
+            expr: dolphindb_metric_disk_free_space_ratio{dolphindb_io_component_type="Datanode"} * 100 < 10
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: "High Disk usage detected"
+              description: "Cluster: {{$labels.dolphindb_io_dolphindb_name}} Node: {{$labels.pod}}:\n Disk usage is above 90% (current value is: {{ $value }}"
+
+
+      - name: Job
+        rules:
+          - alert: JobRunningException
+            expr: changes(dolphindb_metric_running_jobs{}[30m]) == 0 and dolphindb_metric_running_jobs != 0
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Job take too long"
+              description: "Cluster: {{$labels.dolphindb_io_dolphindb_name}} Node: {{$labels.pod}}:\n Running Jobs for more than 30 minutes have not be reduced"
+
+      - name: Down
+        rules:
+          - alert: DolphinDBNodeDown
+            expr: up{dolphindb_io_component_type=~".+"} unless dolphindb_metric_cpu_usage
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Cluster: {{$labels.dolphindb_io_dolphindb_name}} Node: {{$labels.pod}}: detected has down"
+              description: "Cluster: {{$labels.dolphindb_io_dolphindb_name}} Node: {{$labels.pod}}: has been down for more than 2 minutes."
+          - alert: HostNodeDown
+            expr: up{job="kubernetes-nodes"} == 0
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Node: {{$labels.instance}}: detected has down"
+              description: "Node: {{$labels.pod}}: has been down for more than 2 minutes."
+
   prometheus.yml:
     rule_files:
       - /etc/config/recording_rules.yml
@@ -172,6 +247,11 @@ serverFiles:
     ## Below two files are DEPRECATED will be removed from this default values file
       - /etc/config/rules
       - /etc/config/alerts
+
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: ["dolphindb-mgr-alertmanager:9093"]
 
     scrape_configs:
       - job_name: prometheus
