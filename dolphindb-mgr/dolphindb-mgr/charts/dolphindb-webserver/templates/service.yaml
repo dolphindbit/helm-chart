@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dolphindbWebserver.fullName" . }}
+  labels:
+    app: {{ include "dolphindbWebserver.fullName" . }}
+spec:
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+  type: {{ include "dolphindbWebserver.service.type" . }}
+  selector:
+    app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}

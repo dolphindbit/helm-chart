@@ -1,0 +1,158 @@
+image:
+  repository: grafana/loki
+  tag: 2.4.1
+  pullPolicy: IfNotPresent
+
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+
+## Affinity for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+# podAntiAffinity:
+#   requiredDuringSchedulingIgnoredDuringExecution:
+#   - labelSelector:
+#       matchExpressions:
+#       - key: app
+#         operator: In
+#         values:
+#         - loki
+#     topologyKey: "kubernetes.io/hostname"
+
+## StatefulSet annotations
+annotations: {}
+
+config:
+  auth_enabled: false
+  ingester:
+    chunk_idle_period: 3m
+    chunk_block_size: 262144
+    chunk_retain_period: 1m
+    max_transfer_retries: 0
+    wal:
+      dir: /data/loki/wal
+    lifecycler:
+      ring:
+        kvstore:
+          store: inmemory
+        replication_factor: 1
+
+      ## Different ring configs can be used. E.g. Consul
+      # ring:
+      #   store: consul
+      #   replication_factor: 1
+      #   consul:
+      #     host: "consul:8500"
+      #     prefix: ""
+      #     http_client_timeout: "20s"
+      #     consistent_reads: true
+  limits_config:
+    enforce_metric_name: false
+    reject_old_samples: true
+    reject_old_samples_max_age: 168h
+    ingestion_rate_mb: 20
+    ingestion_burst_size_mb: 40
+    per_stream_rate_limit: 14MB
+    max_streams_per_user: 0
+  schema_config:
+    configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
+  server:
+    grpc_server_max_recv_msg_size: 21000000
+    grpc_server_max_send_msg_size: 21000000
+    http_listen_port: 3100
+  storage_config:
+    boltdb_shipper:
+      active_index_directory: /data/loki/boltdb-shipper-active
+      cache_location: /data/loki/boltdb-shipper-cache
+      cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
+      shared_store: filesystem
+    filesystem:
+      directory: /data/loki/chunks
+  chunk_store_config:
+    max_look_back_period: 0s
+  table_manager:
+    retention_deletes_enabled: false
+    retention_period: 0s
+  compactor:
+    working_directory: /data/loki/boltdb-shipper-compactor
+    shared_store: filesystem
+
+## Additional Loki container arguments, e.g. log level (debug, info, warn, error)
+extraArgs: {}
+  # log.level: debug
+
+livenessProbe:
+  httpGet:
+    path: /ready
+    port: http-metrics
+  initialDelaySeconds: 5
+
+## The app name of loki clients
+client: {}
+  # name:
+
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+nodeSelector: {}
+
+# Pod securityContext
+securityContext:
+  runAsUser: 10001
+  runAsNonRoot: true
+  runAsGroup: 10001
+  fsGroup: 10001
+
+## Pod Labels
+podLabels: {}
+
+## Pod Annotations
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "http-metrics"
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: http-metrics
+  initialDelaySeconds: 5
+
+replicas: 1
+
+resources: {}
+# limits:
+#   cpu: 200m
+#   memory: 256Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
+
+service:
+  type: ClusterIP
+  nodePort:
+  port: 3100
+  annotations: {}
+  labels: {}
+  targetPort: http-metrics
+
+terminationGracePeriodSeconds: 4800
+
+## Tolerations for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+persistence:
+  accessModes:
+    - ReadWriteOnce
+  storageClass: ""
+  size: 10Gi
+  selector: {}

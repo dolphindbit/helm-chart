@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include  "dolphindbOperator.fullName" . }}
+  labels:
+    dolphindb.io/component: dolphindb-operator
+    app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      dolphindb.io/component: dolphindb-operator
+      app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+  serviceName:  {{ include  "dolphindbOperator.fullName" . }}
+  template:
+    metadata:
+      name: {{ include  "dolphindbOperator.fullName" . }}
+      labels:
+        dolphindb.io/component: dolphindb-operator
+        app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+    spec:
+      terminationGracePeriodSeconds: 0
+      serviceAccountName: {{ include "global.serviceaccount.name" . }}
+      containers:
+        - name: dolphindb-operator
+          image: {{ include "repository" . }}/dolphindb-operator:{{ include  "dolphindbOperator.imageTag" . }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- include "mgr.env" . | indent 12}}
+          volumeMounts:
+            - name: license
+              mountPath: /dolphindb.lic
+              subPath: dolphindb.lic
+            - mountPath: /etc/localtime
+              name: localtime
+            - name: promtail-config
+              mountPath: /promtail-config.yaml
+              subPath: promtail-config.yaml
+      volumes:
+        - name: license
+          configMap:
+            name: dolphindb-license
+            items:
+              - key: dolphindb.lic
+                path: dolphindb.lic
+        - name: promtail-config
+          configMap:
+            name: dolphindb-promtail-config
+            items:
+              - key: promtail-config.yaml
+                path: promtail-config.yaml
+        {{- include "mgr.localtime.volume" . | indent 8}}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: {{ include  "dolphindbOperator.fullName" . }}
+              topologyKey: kubernetes.io/hostname
+      {{- if .Values.nodeAffinity}}
+        nodeAffinity:
+          {{- toYaml .Values.nodeAffinity | nindent 10 }}
+      {{- else if .Values.global.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml .Values.global.nodeAffinity | nindent 10 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

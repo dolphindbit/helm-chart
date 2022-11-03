@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    dolphindb.io/component.config: config
+  name: dolphindb-env-config
+data:
+  env-config: |-
+    global:
+      storageClass: {{ .Values.global.storageClass }}
+      imageRepository: {{ include "repository" . }}
+      localTimeFileHostPath: {{ include "localtime.filehostpath" . }}
+      customDomainSuffix: {{ .Values.global.customDomainSuffix }}
+      minPersistentVolumeSize: {{ .Values.global.minPersistentVolumeSize }}
+      {{- with .Values.global.nodeAffinity }}
+      nodeAffinity:
+        {{- toYaml . | nindent 8}}
+      {{- end }}
+    dolphindb:
+      serviceType: {{ include "dolphindb.service.type" . }}
+      licenseName: {{ .Values.license.name }}
+      promtailConfigName: {{ .Values.promtailConfig.name }}
+      coreDumpDir: {{ .Values.dolphindb.coreDumpDir }}
+      controllerDataSize: {{ .Values.dolphindb.controllerDataSize }}
+      datanodeDataSize: {{ .Values.dolphindb.datanodeDataSize }}
+      localTimeFileMountPath: {{ .Values.dolphindb.localTimeFileMountPath }}
+      disableExporter:  {{ .Values.dolphindb.disableExporter }}
+      logCleanLimit: {{ .Values.dolphindb.logCleanLimit }}
+      {{- with .Values.dolphindb.labels }}
+      labels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.annotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPodLabels }}
+      customPodLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPodAnnotations }}
+      customPodAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPvcLabels }}
+      customPvcLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customPvcAnnotations }}
+      customPvcAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customServiceLabels }}
+      customServiceLabels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.dolphindb.customServiceAnnotations }}
+      customServiceAnnotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.license.resources }}
+      resources:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      images:
+        versions:
+          - version: v1.30.14
+          - version: v1.30.15
+          - version: v1.30.16
+          - version: v1.30.17
+          - version: v1.30.18
+          - version: v1.30.19
+          - version: v2.00.3
+          - version: v2.00.4
+            images:
+               dolphindb: v2.00.4-patch3
+          - version: v2.00.5
+          - version: v2.00.6
+          - version: v2.00.7
+        default:
+          dolphindb-config-loader: {{ include "dolphindb-config-loader.default.tag" . }}
+          dolphindb-service-manager: {{ include "dolphindb-service-manager.default.tag" . }}
+          dolphindb-exporter: {{ include "dolphindb-exporter.default.tag" . }}
+          dolphindb-cleaner: {{ include "dolphindb-cleaner.default.tag" . }}
+          promtail: {{ include "promtail.default.tag" . }}
