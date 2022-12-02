@@ -3,7 +3,7 @@ entries:
   dolphindb-mgr:
   - apiVersion: v2
     appVersion: v1.1.0
-    created: "2022-11-02T23:08:58.307337143-04:00"
+    created: "2022-12-02T03:06:38.701052822-05:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -27,7 +27,7 @@ entries:
       name: loki
       repository: ""
     description: A Helm chart for Kubernetes
-    digest: 3431d3eaa8c708c3d4ab2d5e7b7ebd95212513463112dfdafa91e75a2718e655
+    digest: 1e993144ef6ffcad97fed16599e672af9fd891d045ed8610f110105e934e42b1
     name: dolphindb-mgr
     type: application
     urls:
@@ -35,7 +35,7 @@ entries:
     version: v1.1.0
   - apiVersion: v2
     appVersion: v1.0.3
-    created: "2022-11-02T23:08:58.302281539-04:00"
+    created: "2022-12-02T03:06:38.696981202-05:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -67,7 +67,7 @@ entries:
     version: v1.0.3
   - apiVersion: v2
     appVersion: v1.0.2
-    created: "2022-11-02T23:08:58.296348902-04:00"
+    created: "2022-12-02T03:06:38.690179585-05:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -90,7 +90,7 @@ entries:
     version: v1.0.2
   - apiVersion: v2
     appVersion: v1.0.1
-    created: "2022-11-02T23:08:58.294112416-04:00"
+    created: "2022-12-02T03:06:38.687955061-05:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -113,7 +113,7 @@ entries:
     version: v1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-11-02T23:08:58.291964229-04:00"
+    created: "2022-12-02T03:06:38.685899329-05:00"
     description: A Helm chart for Kubernetes
     digest: 9a595c12763a68e26ce87d417d3db0e2a41faff90cf5a259e51d3b9955fa3097
     name: dolphindb-mgr
@@ -121,4 +121,4 @@ entries:
     urls:
     - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
     version: v1.0.0
-generated: "2022-11-02T23:08:58.291393175-04:00"
+generated: "2022-12-02T03:06:38.6853438-05:00"
