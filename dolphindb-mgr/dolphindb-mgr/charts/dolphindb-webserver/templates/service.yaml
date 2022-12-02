@@ -8,6 +8,6 @@ spec:
   ports:
     - port: {{ .Values.port }}
       targetPort: {{ .Values.port }}
-  type: {{ include "dolphindbWebserver.service.type" . }}
+  type: ClusterIP
   selector:
     app.kubernetes.io/name: {{ include "dolphindbWebserver.fullName" . }}

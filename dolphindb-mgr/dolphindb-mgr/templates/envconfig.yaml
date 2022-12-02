@@ -7,11 +7,13 @@ metadata:
 data:
   env-config: |-
     global:
-      storageClass: {{ .Values.global.storageClass }}
+      storageClass: {{ .Values.global.storageClass | quote }}
       imageRepository: {{ include "repository" . }}
       localTimeFileHostPath: {{ include "localtime.filehostpath" . }}
-      customDomainSuffix: {{ .Values.global.customDomainSuffix }}
-      minPersistentVolumeSize: {{ .Values.global.minPersistentVolumeSize }}
+      customDomainSuffix: {{ .Values.global.customDomainSuffix | quote }}
+      {{- if .Values.global.minPersistentVolumeSize }}
+      minPersistentVolumeSize: {{ .Values.global.minPersistentVolumeSize | quote }}
+      {{- end -}}
       {{- with .Values.global.nodeAffinity }}
       nodeAffinity:
         {{- toYaml . | nindent 8}}
@@ -70,6 +72,7 @@ data:
           - version: v1.30.17
           - version: v1.30.18
           - version: v1.30.19
+          - version: v1.30.20
           - version: v2.00.3
           - version: v2.00.4
             images:
@@ -77,9 +80,11 @@ data:
           - version: v2.00.5
           - version: v2.00.6
           - version: v2.00.7
+          - version: v2.00.8
         default:
           dolphindb-config-loader: {{ include "dolphindb-config-loader.default.tag" . }}
           dolphindb-service-manager: {{ include "dolphindb-service-manager.default.tag" . }}
           dolphindb-exporter: {{ include "dolphindb-exporter.default.tag" . }}
           dolphindb-cleaner: {{ include "dolphindb-cleaner.default.tag" . }}
+          dolphindb-backup: {{ include "dolphindb-backup.default.tag" . }}
           promtail: {{ include "promtail.default.tag" . }}

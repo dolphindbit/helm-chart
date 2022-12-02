@@ -7,6 +7,7 @@ rules:
       - ""
       - apps
       - batch
+      - apiextensions.k8s.io
       - storage.k8s.io
       - rbac.authorization.k8s.io
       - dolphindb.dolphindb.io
@@ -22,6 +23,7 @@ rules:
       - statefulsets
       - deployments
       - jobs
+      - customresourcedefinitions
       - storageclasses
       - roles
       - rolebindings
@@ -44,3 +46,28 @@ rules:
       - get
       - patch
       - update
+  - apiGroups:
+    - backup.dolphindb.io
+    resources:
+    - backups
+    - restores
+    verbs:
+    - create
+    - delete
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - backup.dolphindb.io
+    resources:
+    - restores/status
+    - restores/finalizers
+    - backups/status
+    - backups/finalizers
+    verbs:
+    - get
+    - patch
+    - update
+

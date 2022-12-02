@@ -26,6 +26,10 @@
 {{- default .Values.global.version .Values.dolphindb.images.default.dolphindbServiceManager -}}
 {{- end -}}
 
+{{- define "dolphindb-backup.default.tag" -}}
+{{- default .Values.global.version .Values.dolphindb.images.default.dolphindbBackup -}}
+{{- end -}}
+
 {{- define "dolphindb-exporter.default.tag" -}}
 {{- default .Values.global.version .Values.dolphindb.images.default.dolphindbExporter -}}
 {{- end -}}
@@ -76,4 +80,8 @@
 
 {{- define "loki.address" -}}
 {{- default ( printf "http://%s.%s.svc.cluster.local:%s"  ( include "loki.fullname" . ) ( .Release.Namespace ) ( include "loki.port" . ) ) .Values.global.existingLokiAddress -}}
+{{- end -}}
+
+{{- define "domain.suffix" -}}
+{{- default "svc.cluster.local" .Values.global.customDomainSuffix -}}
 {{- end -}}

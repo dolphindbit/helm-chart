@@ -4,7 +4,7 @@ global:
   storageClass: ""
   serviceType: NodePort
   serviceAccount: dolphindb-mgr-sa
-  version: v1.1.0
+  version: v1.1.1
   allNamespace: false
   localTimeFileHostPath: "/etc/localtime"
   customDomainSuffix: ""
@@ -32,6 +32,12 @@ dolphindb-operator:
   replicaCount: 2
   imageTag: ""
 
+dolphindb-cloud-portal:
+  enabled: true
+  replicaCount: 2
+  imageTag: ""
+  nodePortIP: ""
+
 dolphindb-webserver:
   enabled: true
   replicaCount: 2
@@ -52,6 +58,7 @@ dolphindb:
       dolphindbServiceManager: ""
       dolphindbExporter: ""
       dolphindbCleaner: ""
+      dolphindbBackup: ""
       promtail: "2.4.1"
 
 promtailConfig:
