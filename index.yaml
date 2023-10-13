@@ -3,7 +3,7 @@ entries:
   dolphindb-mgr:
   - apiVersion: v2
     appVersion: v1.1.2
-    created: "2023-03-30T05:38:20.895715459-04:00"
+    created: "2023-10-13T15:20:41.10646468+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -30,7 +30,7 @@ entries:
       name: loki
       repository: ""
     description: A Helm chart for Kubernetes
-    digest: 88e39798789f3d18c1ae76a9bf1b5e80886680fac2d85a1af920ddae4a19f9aa
+    digest: 3559769cc06f3967c0912c0a743cb4399ac51d35e900548c0264d7d46494e3a0
     name: dolphindb-mgr
     type: application
     urls:
@@ -38,7 +38,7 @@ entries:
     version: v1.1.2
   - apiVersion: v2
     appVersion: v1.1.1
-    created: "2023-03-30T05:38:20.891701717-04:00"
+    created: "2023-10-13T15:20:41.0964269+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -73,7 +73,7 @@ entries:
     version: v1.1.1
   - apiVersion: v2
     appVersion: v1.1.0
-    created: "2023-03-30T05:38:20.88820669-04:00"
+    created: "2023-10-13T15:20:41.084804605+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -105,7 +105,7 @@ entries:
     version: v1.1.0
   - apiVersion: v2
     appVersion: v1.0.3
-    created: "2023-03-30T05:38:20.884172622-04:00"
+    created: "2023-10-13T15:20:41.075190087+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -137,7 +137,7 @@ entries:
     version: v1.0.3
   - apiVersion: v2
     appVersion: v1.0.2
-    created: "2023-03-30T05:38:20.876363594-04:00"
+    created: "2023-10-13T15:20:41.057252554+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -160,7 +160,7 @@ entries:
     version: v1.0.2
   - apiVersion: v2
     appVersion: v1.0.1
-    created: "2023-03-30T05:38:20.874139362-04:00"
+    created: "2023-10-13T15:20:41.049438218+08:00"
     dependencies:
     - condition: dolphindb-operator.enabled
       name: dolphindb-operator
@@ -183,7 +183,7 @@ entries:
     version: v1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-03-30T05:38:20.872093971-04:00"
+    created: "2023-10-13T15:20:41.043860437+08:00"
     description: A Helm chart for Kubernetes
     digest: 9a595c12763a68e26ce87d417d3db0e2a41faff90cf5a259e51d3b9955fa3097
     name: dolphindb-mgr
@@ -191,4 +191,4 @@ entries:
     urls:
     - https://dolphindbit.github.io/helm-chart/dolphindb-mgr-0.1.0.tgz
     version: v1.0.0
-generated: "2023-03-30T05:38:20.871552217-04:00"
+generated: "2023-10-13T15:20:41.042390281+08:00"
